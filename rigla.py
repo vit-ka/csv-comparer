@@ -3,6 +3,8 @@ import datetime
 
 
 class Parser:
+    def __init__(self):
+        self.type = 'Rigla'
 
     def parse(self, csv_string):
         splitted_string = [x.strip() for x in csv_string.split(';')]

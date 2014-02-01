@@ -18,18 +18,18 @@ class ParsedValueToCompare:
         return self.arrival_date == other.arrival_date and math.fabs(self.price - other.price) < 1
 
 
-def write_file(filename, one_list, two_list, zero_list):
+def write_file(filename, not_in_first_list, not_in_second_list, in_both_lists):
     with codecs.open(filename, mode="w", encoding="cp1251") as f:
         f.write("\n\nThe values that are not in the second file but are in the first file.\n")
-        for line in one_list:
+        for line in not_in_first_list:
             f.write(';'.join(line.other_values) + '\n')
 
         f.write("\n\nThe values that are not in the first file but are in the second file.\n")
-        for line in two_list:
+        for line in not_in_second_list:
             f.write(';'.join(line.other_values) + '\n')
 
         f.write("\n\nThe values that are the same in the first and the second files.\n")
-        for line in zero_list:
+        for line in in_both_lists:
             f.write(';'.join(line.other_values) + '\n')
 
 
