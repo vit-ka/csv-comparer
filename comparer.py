@@ -1,22 +1,9 @@
 
-class ComparedValue:
-    def __init__(self, status, value):
-        self.status = status
-        self.value = value
-
-    def __str__(self):
-        return '[' + str(self.status) + ': ' + str(self.value) + ']'
-
-
 class ComparedValuesCollection:
-    def __init__(self, list_of_values):
-        self.one_list = []
-        self.two_list = []
-        for i in list_of_values:
-            if i.status == 1:
-                self.one_list.append(i)
-            elif i.status == 2:
-                self.two_list.append(i)
+    def __init__(self, one_list, two_list, zero_list):
+        self.one_list = one_list
+        self.two_list = two_list
+        self.zero_list = zero_list
 
 
 class Comparer:
@@ -25,14 +12,28 @@ class Comparer:
         self.right_value = right_value
 
     def compare(self):
-        list_to_return = []
+        one_list = []
+        two_list = []
+        zero_list = []
 
         for left_list_value in self.left_value:
             if left_list_value not in self.right_value:
-                list_to_return.append(ComparedValue(1, left_list_value))
+                one_list.append(left_list_value)
+            else:
+                zero_list.append(left_list_value)
 
         for right_list_value in self.right_value:
             if right_list_value not in self.left_value:
-                list_to_return.append(ComparedValue(2, right_list_value))
+                two_list.append(right_list_value)
 
-        return ComparedValuesCollection(list_to_return)
+        result = ComparedValuesCollection(one_list, two_list, zero_list)
+
+        print("\n\nComparing results:")
+        print(" * The count of lines which are not in the second list: {0}, {1:4.2f}%".format(
+              len(result.one_list), len(result.one_list) / len(self.left_value) * 100.0))
+        print(" * The count of lines which are not in the first list: {0}, {1:4.2f}%".format(
+              len(result.two_list), len(result.two_list) / len(self.right_value) * 100.0))
+        print(" * The count of lines which are the same: {0}, {1:4.2f}%".format(
+              len(result.zero_list), len(result.zero_list) / len(self.left_value) * 100.0))
+
+        return result
