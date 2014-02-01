@@ -15,7 +15,9 @@ class ParsedValueToCompare:
                + ': ' + str(self.other_values) + ']'
 
     def __eq__(self, other):
-        return self.arrival_date == other.arrival_date and math.fabs(self.price - other.price) < 1
+        return self.arrival_date == other.arrival_date \
+            and math.fabs(self.price - other.price) < 2 \
+            and self.item_number == other.item_number
 
 
 def write_file(filename, not_in_first_list, not_in_second_list, in_both_lists):

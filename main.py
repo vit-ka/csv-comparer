@@ -1,4 +1,5 @@
 import rigla
+import katren
 import comparer
 import sys
 import common
@@ -34,7 +35,8 @@ def main():
 
 def get_parser(parser_desc):
     return {
-        'rigla': rigla.Parser()
+        'rigla': rigla.Parser(),
+        'katren': katren.Parser()
     }.get(parser_desc, rigla.Parser())
 
 if __name__ == '__main__':
