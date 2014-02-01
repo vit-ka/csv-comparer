@@ -2,9 +2,15 @@ import rigla
 import comparer
 import sys
 import common
+#import argparse
 
 
 def main():
+    #argparser = argparse.ArgumentParser(description="Compares two csv files and produces a result file.")
+    #argparser.add_argument("files", metavar="F", type=open, nargs="+", help="files to process")
+    #args = argparser.parse_args()
+    #print(args)
+
     if len(sys.argv) < 5:
         print("Usage: main.py <first_file> <second_file> <output_file> <second_file_format> [-e]")
         print("       Use a -e parameter to print errors during parsing.")
