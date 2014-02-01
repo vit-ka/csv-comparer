@@ -1,5 +1,7 @@
 import rigla
 import katren
+import eclif
+import rosta
 import comparer
 import sys
 import common
@@ -11,6 +13,8 @@ def main():
     #argparser.add_argument("files", metavar="F", type=open, nargs="+", help="files to process")
     #args = argparser.parse_args()
     #print(args)
+
+    print(sys.argv)
 
     if len(sys.argv) < 5:
         print("Usage: main.py <first_file> <second_file> <output_file> <second_file_format> [-e]")
@@ -36,7 +40,9 @@ def main():
 def get_parser(parser_desc):
     return {
         'rigla': rigla.Parser(),
-        'katren': katren.Parser()
+        'katren': katren.Parser(),
+        'eclif': eclif.Parser(),
+        'rosta': rosta.Parser()
     }.get(parser_desc, rigla.Parser())
 
 if __name__ == '__main__':
